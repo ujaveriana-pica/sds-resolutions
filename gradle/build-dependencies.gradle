@@ -1,0 +1,25 @@
+/* ============================================================================
+   This file contains the configurations for main dependencies project
+   ============================================================================
+
+   Included from: "${rootProject.projectDir}/build.gradle"
+   ============================================================================
+ */
+repositories { 
+    mavenCentral() 
+}
+
+dependencies {
+
+	implementation "org.springframework.boot:spring-boot-starter"
+	implementation "org.springframework.boot:spring-boot-starter-actuator"
+	implementation "org.springframework.kafka:spring-kafka"
+
+	implementation 'com.itextpdf:itextpdf:5.0.6'
+	implementation "com.google.code.gson:gson:2.8.6"
+	implementation "io.micrometer:micrometer-registry-prometheus:1.7.0"
+
+	implementation "org.projectlombok:lombok:1.18.20"
+	annotationProcessor "org.projectlombok:lombok:1.18.20"
+
+}

@@ -1,0 +1,45 @@
+server:
+  port: 9040
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  format: TEXT
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  mvc:
+    throw-exception-if-no-handler-found: true
+    dispatch-options-request: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    properties:
+      sasl:
+        jaas:
+          config: org.apache.kafka.common.security.plain.PlainLoginModule required username="admin" password="admin-secret";
+        mechanism: PLAIN
+      security:
+        protocol: SASL_PLAINTEXT
+    producer:
+      client-id: sds-resolutions
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      retries: 2
+    consumer:
+      group-id: sds-resolutions
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      auto-offset-reset: earliest
+    jaas:
+      enabled: true
+
+resolution:
+  file: C:\Users\usuario\Documents\Developer\Resolucion_{id}.pdf
