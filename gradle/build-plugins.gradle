@@ -10,7 +10,8 @@
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-apply plugin: "jacoco"
+apply plugin: 'jacoco'
+apply plugin: 'org.sonarqube'
 
 def jacocoExclude = ['**/Application*', '**/model/**', '**/crosscutting/**', '**/dataprovider/**', '**/configuration/**', '**/service/**']
 
@@ -41,6 +42,16 @@ jacocoTestCoverageVerification {
                 minimum = 0.8
             }
         }
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "ujaveriana-pica_sds-resolutions"
+        property "sonar.organization", "ujaveriana-pica"
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.verbose", "true"
+        property "sonar.reportPath" , "${project.buildDir}/jacoco/test.exec"
     }
 }
 
