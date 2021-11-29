@@ -47,7 +47,7 @@ jacocoTestCoverageVerification {
 
 sonarqube {
     properties {
-        property "sonar.projectKey", "sds-resolutions"
+        property "sonar.projectKey", "ujaveriana-pica_sds-resolutions"
         property "sonar.organization", "ujaveriana-pica"
         property "sonar.host.url", "https://sonarcloud.io"
         property "sonar.verbose", "true"
