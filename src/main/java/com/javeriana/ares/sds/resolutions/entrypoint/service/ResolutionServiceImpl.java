@@ -6,7 +6,6 @@ import com.javeriana.ares.sds.resolutions.crosscutting.constants.Constants;
 import com.javeriana.ares.sds.resolutions.model.domain.ResolutionDO;
 import com.javeriana.ares.sds.resolutions.model.template.ResolutionTemplate;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -30,7 +29,7 @@ public class ResolutionServiceImpl {
 
     @KafkaListener(topics = Constants.TOPIC_NAME)
     public void createResolution(String message) {
-        log.info("Message received....");
+        log.info("Message received...." + message);
         JsonObject response = new Gson().fromJson(message, JsonObject.class);
         String statusValue = response.get("estado").getAsString();
         if (statusValue.equalsIgnoreCase(Constants.STATUS_APPROVE) || statusValue.equalsIgnoreCase(Constants.STATUS_DENY)) {
