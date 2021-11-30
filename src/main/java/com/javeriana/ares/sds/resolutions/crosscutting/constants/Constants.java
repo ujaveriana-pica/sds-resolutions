@@ -19,7 +19,8 @@ public class Constants {
     public static final String RESOLUTION_PARAGRAPH_2 = "En uso de sus facultades legales y en especial las conferidas por el Decreto 780 de 2016, " +
             "Ley 1164 de 2007 y Resolución 3030 de 2014 del Ministerio de Salud y Protección Social y, ";
     public static final String RESOLUTION_TITLE_3 = "CONSIDERANDO";
-    public static final String RESOLUTION_PARAGRAPH_3 = "Que el(la) señor(a) {fullName}, solicitó ante esta Secretaría la autorización del ejercicio " +
+    public static final String RESOLUTION_PARAGRAPH_3_1 = "Que el(la) señor(a) ";
+    public static final String RESOLUTION_PARAGRAPH_3_2 = ", solicitó ante esta Secretaría la autorización del ejercicio " +
             "de su profesión/ocupación {job} otorgado por , el día {titleDate}, con el acta {actNumber}, registrado en el libro {bookNumber}, " +
             "Folio {folioNumber}, año {yearTitle}. Que estudiada la documentación presentada por el solicitante esta cumple con los requisitos " +
             "establecidos en las normas legales vigentes; En virtud de lo expuesto este Despacho, ";
@@ -29,15 +30,17 @@ public class Constants {
     public static final String STATUS_GENERATED = "-GENERADO";
     public static final String STATUS_APPROVE_MESSAGE = "AUTORIZAR";
     public static final String STATUS_DENY_MESSAGE = "NEGAR AUTORIZACIÓN";
-    public static final String RESOLUTION_ARTICLE_1 = "ARTICULO PRIMERO: {statusMessage} a {fullName}, para ejercer la profesión/ocupación de " +
+    public static final String RESOLUTION_ARTICLE_1_1 = "ARTICULO PRIMERO: ";
+    public static final String RESOLUTION_ARTICLE_1_2 = " a ";
+    public static final String RESOLUTION_ARTICLE_1_3 = ", para ejercer la profesión/ocupación de " +
             "{job} en el Territorio Nacional. ";
 
-    public static final String ARTICLE_2 = "ARTICULO SEGUNDO";
-    public static final String ARTICLE_3 = "ARTICULO TERCERO";
-    public static final String RESOLUTION_ARTICLE_2 = ARTICLE_2 + ": {fullName}, quedará inscrito en el Registro Único Nacional del Talento Humano " +
+    public static final String ARTICLE_2 = "ARTICULO SEGUNDO: ";
+    public static final String ARTICLE_3 = "ARTICULO TERCERO: ";
+    public static final String RESOLUTION_ARTICLE_2 = " , quedará inscrito en el Registro Único Nacional del Talento Humano " +
             "en Salud (RETHUS) dentro de los primeros (5) cinco días hábiles del mes inmediatamente siguiente al de expedición de este Acto Administrativo.";
-    public static final String RESOLUTION_ARTICLE_3 = "{article}: Notifíquese electrónicamente el contenido de la presente Resolución a {fullName}, " +
-            "o a quien haga sus veces, haciéndole saber que, contra la misma sólo procede el recurso de reposición ante esta Dirección, el cual deberá " +
+    public static final String RESOLUTION_ARTICLE_3_1 = "{article}Notifíquese electrónicamente el contenido de la presente Resolución a";
+    public static final String RESOLUTION_ARTICLE_3_2 = ", o a quien haga sus veces, haciéndole saber que, contra la misma sólo procede el recurso de reposición ante esta Dirección, el cual deberá " +
             "interponerse dentro de los diez (10) días siguientes a la notificación electrónica, por medio de la plataforma virtual mediante la cual se " +
             "llevó a cabo el trámite inicial o por escrito. ";
 

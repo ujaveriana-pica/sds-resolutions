@@ -12,8 +12,13 @@ public class ResolutionTemplate {
 
     private static Paragraph paragraph;
 
+    private static Font bold = FontFactory.getFont(FontFactory.HELVETICA, 14, Font.BOLD);
+
     public static void createResolution(String resolutionFile, ResolutionDO resolutionDO) {
         try {
+            Chunk fullName = new Chunk(resolutionDO.getFullName(), bold);
+            Chunk statusMessage = new Chunk(resolutionDO.getStatusMessage(), bold);
+
             Document document = new Document(PageSize.A4, 40f, 40f, 40f, 40f);
             PdfWriter.getInstance(document, new FileOutputStream(resolutionFile
                     .replace("{id}", resolutionDO.getId())));
@@ -24,7 +29,7 @@ public class ResolutionTemplate {
             document.add(paragraph);
             document.add(Chunk.NEWLINE);
 
-            paragraph = new Paragraph(Constants.RESOLUTION_TITLE_2);
+            paragraph = new Paragraph(Constants.RESOLUTION_TITLE_2, bold);
             paragraph.setAlignment(Element.ALIGN_CENTER);
             document.add(paragraph);
             document.add(Chunk.NEWLINE);
@@ -39,15 +44,17 @@ public class ResolutionTemplate {
             document.add(paragraph);
             document.add(Chunk.NEWLINE);
 
-            paragraph = new Paragraph(Constants.RESOLUTION_TITLE_3);
+            paragraph = new Paragraph(Constants.RESOLUTION_TITLE_3, bold);
             paragraph.setAlignment(Element.ALIGN_CENTER);
             document.add(paragraph);
             document.add(Chunk.NEWLINE);
 
-            paragraph = new Paragraph(Constants.RESOLUTION_PARAGRAPH_3.replace("{fullName}", resolutionDO.getFullName())
+            paragraph = new Paragraph(Constants.RESOLUTION_PARAGRAPH_3_1);
+            paragraph.add(fullName);
+            paragraph.add(new Paragraph(Constants.RESOLUTION_PARAGRAPH_3_2
                     .replace("{job}", resolutionDO.getJob()).replace("{titleDate}", resolutionDO.getTitleDate())
                     .replace("{actNumber}", resolutionDO.getActNumber()).replace("{bookNumber}", resolutionDO.getBookNumber())
-                    .replace("{folioNumber}", resolutionDO.getFolioNumber()).replace("{yearTitle}", resolutionDO.getYearTitle()));
+                    .replace("{folioNumber}", resolutionDO.getFolioNumber()).replace("{yearTitle}", resolutionDO.getYearTitle())));
             paragraph.setAlignment(Element.ALIGN_JUSTIFIED);
             document.add(paragraph);
             document.add(Chunk.NEWLINE);
@@ -56,21 +63,29 @@ public class ResolutionTemplate {
             document.add(paragraph);
             document.add(Chunk.NEWLINE);
 
-            paragraph = new Paragraph(Constants.RESOLUTION_ARTICLE_1.replace("{statusMessage}", resolutionDO.getStatusMessage())
-                    .replace("{fullName}", resolutionDO.getFullName()).replace("{job}", resolutionDO.getJob()));
+            paragraph = new Paragraph(Constants.RESOLUTION_ARTICLE_1_1);
+            paragraph.add(statusMessage);
+            paragraph.add(new Chunk(Constants.RESOLUTION_ARTICLE_1_2));
+            paragraph.add(fullName);
+            paragraph.add(new Chunk(Constants.RESOLUTION_ARTICLE_1_3
+                    .replace("{job}", resolutionDO.getJob())));
             paragraph.setAlignment(Element.ALIGN_JUSTIFIED);
             document.add(paragraph);
             document.add(Chunk.NEWLINE);
 
             if (resolutionDO.isStatus()) {
-                paragraph = new Paragraph(Constants.RESOLUTION_ARTICLE_2.replace("{fullName}", resolutionDO.getFullName()));
+                paragraph = new Paragraph(Constants.ARTICLE_2);
+                paragraph.add(fullName);
+                paragraph.add(new Chunk(Constants.RESOLUTION_ARTICLE_2));
                 paragraph.setAlignment(Element.ALIGN_JUSTIFIED);
                 document.add(paragraph);
                 document.add(Chunk.NEWLINE);
             }
 
-            paragraph = new Paragraph(Constants.RESOLUTION_ARTICLE_3.replace("{fullName}", resolutionDO.getFullName())
+            paragraph = new Paragraph(Constants.RESOLUTION_ARTICLE_3_1
                     .replace("{article}", resolutionDO.isStatus() ? Constants.ARTICLE_3 : Constants.ARTICLE_2));
+            paragraph.add(fullName);
+            paragraph.add(new Chunk(Constants.RESOLUTION_ARTICLE_3_2));
             paragraph.setAlignment(Element.ALIGN_JUSTIFIED);
             document.add(paragraph);
             document.add(Chunk.NEWLINE);
@@ -81,7 +96,11 @@ public class ResolutionTemplate {
             document.add(paragraph);
             document.add(Chunk.NEWLINE);
             document.add(Chunk.NEWLINE);
-            document.add(Chunk.NEWLINE);
+            if (!resolutionDO.isStatus()) {
+                document.add(Chunk.NEWLINE);
+                document.add(Chunk.NEWLINE);
+                document.add(Chunk.NEWLINE);
+            }
 
             paragraph = new Paragraph(new Phrase(20f, Constants.SIGN,
                     FontFactory.getFont(FontFactory.TIMES_ITALIC, 40f)));
